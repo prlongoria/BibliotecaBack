@@ -25,7 +25,7 @@ public class Libro {
 	private String editorial;
 	
 	@Column
-	private String anyo;
+	private int anyo;
 	
 	@Column
 	private String autor;
@@ -38,7 +38,9 @@ public class Libro {
 		super();
 	}
 
-	public Libro(Long id, String nombreLibro, String genero, String editorial, String anyo, String autor, int numeroCopias) {
+	public Libro(Long id, String nombreLibro, String genero, String editorial, int anyo, String autor,
+			int numeroCopias) {
+		super();
 		this.id = id;
 		this.nombreLibro = nombreLibro;
 		this.genero = genero;
@@ -81,11 +83,11 @@ public class Libro {
 		this.editorial = editorial;
 	}
 
-	public String getAnyo() {
+	public int getAnyo() {
 		return anyo;
 	}
 
-	public void setAnyo(String anyo) {
+	public void setAnyo(int anyo) {
 		this.anyo = anyo;
 	}
 
@@ -104,6 +106,7 @@ public class Libro {
 	public void setNumeroCopias(int numeroCopias) {
 		this.numeroCopias = numeroCopias;
 	}
+
 
 	
 }
