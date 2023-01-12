@@ -50,23 +50,18 @@ public class LibroServiceImp {
 		
 		public Libro updateLibroById(Long id, Libro libroUpdated) {
 			
-			//Optional<Libro> libroUpdate = libroRepository.findById(id);
-			
-			return libroRepository.findById(id).map(libro -> {
-				libro.setNombreLibro(libroUpdated.getNombreLibro());
+		        Libro libro = libroRepository.findById(id).get();
+		        libro.setNombreLibro(libroUpdated.getNombreLibro());
 				libro.setGenero(libroUpdated.getGenero());
 				libro.setEditorial(libroUpdated.getEditorial());
 				libro.setAnyo(libroUpdated.getAnyo());
 				libro.setAutor(libroUpdated.getAutor());
 				libro.setNumeroCopias(libroUpdated.getNumeroCopias());
-				
-			}).orElseGet(() -> {
-				
-				return libroRepository.save(libroUpdated);
-			});
-			
-					
+		        
+		        return libroRepository.save(libro);                                
 		}
+					
+}
 		
 
-}
+

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.biblioteca.model.Lector;
+import com.capgemini.biblioteca.model.Libro;
 import com.capgemini.biblioteca.repository.LectorRepository;
 
 @Service
@@ -37,5 +38,16 @@ public class LectorServiceImp {
 		message.put("message", "Error");
 		return message;
 	}
+	
+	public Lector updateLectorById(Long nSocio, Lector lectorUpdated) {
+		
+		Lector lector = lectorRepository.findById(nSocio).get();
+		lector.setNombreLector(lectorUpdated.getNombreLector());
+		lector.setTelefono(lectorUpdated.getTelefono());
+		lector.setDireccion(lectorUpdated.getDireccion());
+		lector.setnLibrosPrestados(lectorUpdated.getnLibrosPrestados());
+        
+        return lectorRepository.save(lector);                                
+}
 	
 }
