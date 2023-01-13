@@ -17,31 +17,36 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.biblioteca.model.Libro;
 import com.capgemini.biblioteca.service.LibroServiceImp;
 
-@CrossOrigin //conecta Angular sin problema de CORS
-@RestController //para hacer ApiRest
+@CrossOrigin // conecta Angular sin problema de CORS
+@RestController // para hacer ApiRest
 @RequestMapping("/api")
 public class LibroController {
 
-	@Autowired 
+	@Autowired
 	LibroServiceImp libroService;
-	
-	@GetMapping(value="/libros")
-	public List<Libro> getAllLibros(){
+
+	@GetMapping(value = "/libros")
+	public List<Libro> getAllLibros() {
 		return libroService.getAllLibros();
 	}
-	
-	@PostMapping(value="/libros")
+
+	@GetMapping(value = "/libros/{id}")
+	public Libro getLibro(@PathVariable Long id) {
+		return libroService.getLibro(id);
+	}
+
+	@PostMapping(value = "/libros")
 	public Libro addLibro(@RequestBody Libro libroNuevo) {
 		Libro libro = libroService.addLibro(libroNuevo);
 		return libro;
 	}
-	
+
 	@DeleteMapping(path = "/libros/{id}")
-	public Map<String, String> deleteLibroById(@PathVariable Long id){
+	public Map<String, String> deleteLibroById(@PathVariable Long id) {
 		Map<String, String> message = libroService.deleteLibroById(id);
 		return message;
 	}
-	
+
 	@PutMapping(path = "/libros/{id}")
 	public Libro updateLibroById(@PathVariable Long id, @RequestBody Libro libro) {
 		return libroService.updateLibroById(id, libro);
